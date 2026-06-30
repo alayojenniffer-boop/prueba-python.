@@ -33,14 +33,6 @@ def agregar_estudiante(lista_estudiantes):
         print("Error: nombre invalido")
         return
     try:
-        busqueda=input("Ingrese nombre del estudiante que busca: ")
-    except ValueError:
-        print("Estudiante no encontrado")
-        return
-    if not validar_nombre(nombre):
-        print("Error: no registrado")
-        return
-    try:
         edad =int(input("Ingrese la edad del estudiante: "))
     except ValueError:
         print("La edad tiene que ser un numero entero")
@@ -63,13 +55,13 @@ def agregar_estudiante(lista_estudiantes):
         "edad" : edad,
         "estado" :False
     }
-    lista_estudiantes.appened(estudiante)
+    lista_estudiantes.append(estudiante)
     print("Estudiante agregado correctamente")
 def buscar_estudiante(lista_estudiante,nombre_buscar):
     for posicion in range(len(lista_estudiante)):
         if lista_estudiante[posicion]["nombre"]== nombre_buscar:
             return posicion
-        return -1
+    return -1
 def eliminar_estudiante(lista_estudiantes):
     nombre = input("Ingrese el nombre del estudiante a eliminar: ")
     posicion= buscar_estudiante(lista_estudiantes,nombre)
@@ -80,10 +72,10 @@ def eliminar_estudiante(lista_estudiantes):
         print(f"El estudiante'{nombre}' no se encuentra registrado")
 def actualizar_estudiante(lista_estudiantes):
     for estudiante in lista_estudiantes:
-        if estudiante ["cantidad"] >0:
-            estudiante["Encontrado"]= True
+        if estudiante ["nota"] >0:
+            estudiante["estado"]= True
         else:
-            estudiante["Encontrado"]= False
+            estudiante["estado"]= False
     print("Actualizacion ejecutada correctamente")
 def mostrar_estudiantes(lista_estudiantes):
     if len(lista_estudiantes)==0:
@@ -91,29 +83,29 @@ def mostrar_estudiantes(lista_estudiantes):
         return
     print("\n==Lista de estudiantes==")
     for estudiante in lista_estudiantes:
-        estado="Encontrado"
-        if not estudiante["Encontrado"]:
-            estado= "No encontrado"
+        estado="Aprobado"
+        if not estudiante["estado"]:
+            estado= "No aprobado"
         print(f"\n Nombre: {estudiante['nombre']}")
         print(f"Edad: {estudiante['edad']}")
-        print(f"Nota: {estudiante[nota]}")
-        print(f"Estado: {estado['estado']}")
+        print(f"Nota: {estudiante['nota']}")
+        print(f"Estado: {estado}")
         print("*"*40)
 while True:
     mostrar_menu()
     opcion= leer_opcion()
     if opcion==1:
-        agregar_estudiante
+        agregar_estudiante(estudiante)
     elif opcion==2:
         nombre=input("Ingrese nombre del estudiante a buscar: ")
         posicion= buscar_estudiante(estudiante, nombre)
         if posicion!=-1:
-         estudiante=estudiante[posicion]
+         est=estudiante[posicion]
          print("\n Estudiante encontrado")
          print(f"Posicion:{posicion}")
-         print(f"Nombre:{estudiante['nombre']}")
-         print(f"Nota: {estudiante['nota']}")
-         print(f"Estado: {estudiante['aprobado']}")
+         print(f"Nombre:{est['nombre']}")
+         print(f"Nota: {est['nota']}")
+         print(f"Estado: {est['estado']}")
         else:
          print("Estudiante no encontrado")
     elif opcion ==3:
